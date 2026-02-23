@@ -1,5 +1,5 @@
 import {Page, Locator, expect } from '@playwright/test';
-
+import { goTo } from '../utils/navigation';
 export class LoginPage {
     readonly page: Page;
     readonly usernameInput: Locator;
@@ -11,15 +11,15 @@ export class LoginPage {
     constructor(page: Page){
         this.page = page;
 
-        this.usernameInput = page.locator('#username');
-        this.passwordInput = page.locator('#password');
-        this.loginButton = page.locator('button[type="submit"]');
-        this.successMessage = page.locator('.alert-success');
-        this.errorMessage = page.locator('.alert-danger');
+        this.usernameInput = page.getByLabel('Username');
+        this.passwordInput = page.getByLabel('Password');
+        this.loginButton = page.getByRole('button', {name: 'Login'});
+        this.successMessage = page.getByText('You logged into a secure area!');
+        this.errorMessage = page.getByText('Your username is invalid!');
     }
 
     async goto() {
-        await this.page.goto('/login');
+        await goTo(this.page, '/login');
     }
 
     async login(username: string, password: string) {
