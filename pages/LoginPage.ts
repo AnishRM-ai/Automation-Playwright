@@ -12,10 +12,10 @@ export class LoginPage {
         this.page = page;
 
         this.usernameInput = page.getByLabel('Username');
-        this.passwordInput = page.getByLabel('Password');
+        this.passwordInput = page.locator('#password');
         this.loginButton = page.getByRole('button', {name: 'Login'});
         this.successMessage = page.getByText('You logged into a secure area!');
-        this.errorMessage = page.getByText('Your username is invalid!');
+        this.errorMessage = page.getByText('Your password is invalid!');
     }
 
     async goto() {
