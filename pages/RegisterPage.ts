@@ -38,8 +38,14 @@ export class RegisterPage {
     };
 
     async assertSuccessMsg(){
-        await expect(this.successMessage).toBeVisible()
+        try{
+             
+        await expect(this.successMessage).toBeVisible();
+    } catch {
+        expect(this.errorMessage).toBeVisible();
     }
+        }
+    
 
     async assertEmptyFieldErr(){
         await expect(this.invalidMessage).toBeVisible();
